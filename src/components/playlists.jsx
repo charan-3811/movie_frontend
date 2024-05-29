@@ -62,7 +62,7 @@ const Playlists = ({ user }) => {
 
     const fetchDetails = async (id) => {
         try {
-            const response = await axios.get(`http://www.omdbapi.com/?apikey=84b53699&i=${id}&plot=full`);
+            const response = await axios.get(`https://www.omdbapi.com/?apikey=84b53699&i=${id}&plot=full`);
             return response.data;
         } catch (error) {
             console.error("Error fetching movie details:", error);
@@ -126,7 +126,7 @@ const Playlists = ({ user }) => {
                 name: selectedPlaylist,
                 status: newStatus
             });
-            if (response.status===200) {
+            if (response.status === 200) {
                 alert(`Playlist changed to ${newStatus} mode`);
                 await fetchData();
             } else {
@@ -139,7 +139,7 @@ const Playlists = ({ user }) => {
     };
 
     return (
-        <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh", width: "100%", marginLeft: "1rem",marginTop:"1rem" }}>
+        <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh", width: "100%", marginLeft: "1rem", marginTop: "1rem" }}>
             <form onSubmit={handleSubmit} style={{ marginBottom: "1rem" }}>
                 <input
                     type="text"
@@ -169,10 +169,10 @@ const Playlists = ({ user }) => {
                     <div style={{ display: "flex", alignItems: "center", marginBottom: "1rem" }}>
                         <h2 style={{ margin: "0" }}>{selectedPlaylist}</h2>
                         <Popup trigger={<button style={{ marginLeft: "1rem", padding: "0.5rem", color: "#fff", border: "none", cursor: "pointer", backgroundColor: "#333" }}>SHARE</button>} modal>
-                            <span style={{ display: "flex", alignItems: "center" }}>
-                                <Link to={shareUrl} style={{ marginRight: "1rem" }}>{shareUrl}</Link>
-                                <button onClick={handleClipboard} style={{ padding: "0.5rem", backgroundColor: "#333", color: "#fff", border: "none", cursor: "pointer" }}>Copy</button>
-                            </span>
+              <span style={{ display: "flex", alignItems: "center" }}>
+                <Link style={{ marginRight: "1rem" }}>{shareUrl}</Link>
+                <button onClick={handleClipboard} style={{ padding: "0.5rem", backgroundColor: "#333", color: "#fff", border: "none", cursor: "pointer" }}>Copy</button>
+              </span>
                         </Popup>
                         <button onClick={handleDeletePlaylist} style={{ marginLeft: "1rem", padding: "0.5rem", backgroundColor: "red", color: "#fff", border: "none", cursor: "pointer" }}>DELETE</button>
                         <select style={{ marginLeft: "1rem", height: "2.5rem", borderRadius: "4px", backgroundColor: "white", color: "black" }}

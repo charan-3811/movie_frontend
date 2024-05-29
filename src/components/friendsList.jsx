@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+// eslint-disable-next-line react/prop-types
 function FriendsList({ user }) {  // Assume the user prop is passed to the component
     const { email, name } = useParams();
     const [playlist, setPlaylist] = useState([]);
@@ -32,7 +33,7 @@ function FriendsList({ user }) {  // Assume the user prop is passed to the compo
 
     const fetchDetails = async (id) => {
         try {
-            const response = await axios.get(`http://www.omdbapi.com/?apikey=84b53699&i=${id}&plot=full`);
+            const response = await axios.get(`https://www.omdbapi.com/?apikey=84b53699&i=${id}&plot=full`);
             return response.data;
         } catch (error) {
             console.error("Error fetching movie details:", error);
