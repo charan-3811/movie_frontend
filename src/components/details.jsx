@@ -5,12 +5,11 @@ import { useParams } from "react-router-dom";
 function Details() {
     const [details, setDetails] = useState(null);
     const { id } = useParams();
-    const url=`https://www.omdbapi.com/?apikey=84b53699&i=${id}&plot=full`;
 
     useEffect(() => {
         const fetchDetails = async () => {
             try {
-                const response = await axios.get(url);
+                const response = await axios.get(`https://www.omdbapi.com/?apikey=84b53699&i=${id}&plot=full`);
                 setDetails(response.data);
             } catch (error) {
                 console.error("Error fetching movie details:", error);
@@ -18,7 +17,7 @@ function Details() {
         };
 
         fetchDetails();
-    }, [id, url]);
+    }, [id]);
 
     if (!details) {
         return <p>Loading...</p>;
