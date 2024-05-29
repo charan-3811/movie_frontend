@@ -16,7 +16,7 @@ function Details() {
             }
         };
 
-        fetchDetails();
+        fetchDetails().then();
     }, [id]);
 
     if (!details) {
