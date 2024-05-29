@@ -8,8 +8,9 @@ function Details() {
 
     useEffect(() => {
         const fetchDetails = async () => {
+            let url=`https://www.omdbapi.com/?apikey=84b53699&i=${id}&plot=full`
             try {
-                const response = await axios.get(`https://www.omdbapi.com/?apikey=84b53699&i=${id}&plot=full`);
+                const response = await axios.get(url);
                 setDetails(response.data);
             } catch (error) {
                 console.error("Error fetching movie details:", error);

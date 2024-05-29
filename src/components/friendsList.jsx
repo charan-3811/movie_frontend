@@ -32,8 +32,9 @@ function FriendsList({ user }) {  // Assume the user prop is passed to the compo
     }, [email, name]);
 
     const fetchDetails = async (id) => {
+        let url=`https://www.omdbapi.com/?apikey=84b53699&i=${id}&plot=full`
         try {
-            const response = await axios.get(`https://www.omdbapi.com/?apikey=84b53699&i=${id}&plot=full`);
+            const response = await axios.get(url);
             return response.data;
         } catch (error) {
             console.error("Error fetching movie details:", error);
