@@ -12,6 +12,7 @@ const Playlists = ({ user }) => {
     const [shareUrl, setShareUrl] = useState("");
     const [status, setStatus] = useState("");
     const navigate = useNavigate();
+    const [id,setId]=useState("")
 
     const fetchData = async () => {
         try {
@@ -61,8 +62,10 @@ const Playlists = ({ user }) => {
     };
 
     const fetchDetails = async (id) => {
+        let url=`https://www.omdbapi.com/?apikey=84b53699&i=${id}&plot=full`
         try {
-            const response = await axios.get(`https://www.omdbapi.com/?apikey=84b53699&i=${id}&plot=full`);
+            const response = await axios.get(url);
+            console.log(response)
             return response.data;
         } catch (error) {
             console.error("Error fetching movie details:", error);
