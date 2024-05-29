@@ -5,6 +5,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Popup from "reactjs-popup";
 
+// eslint-disable-next-line react/prop-types
 const Playlists = ({ user }) => {
     const [newPlaylistName, setNewPlaylistName] = useState("");
     const [details, setDetails] = useState([]);
@@ -50,7 +51,7 @@ const Playlists = ({ user }) => {
     const handleMovies = async (playlist) => {
         setSelectedPlaylist(playlist.name);
         setStatus(playlist.status);
-        setShareUrl(`http://localhost:5173/${user}/${playlist.name}`);
+        setShareUrl(`https://movie-frontend-eb76.onrender.com/${user}/${playlist.name}`);
         try {
             const moviesDetails = await Promise.all(playlist.movies.map(fetchDetails));
             setMoviesDetails(moviesDetails);
