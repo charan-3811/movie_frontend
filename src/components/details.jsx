@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 function Details() {
     const [details, setDetails] = useState(null);
     const { id } = useParams();
-    const url=`https://www.omdbapi.com/?apikey=84b53699&i=${id}&plot=full`
+    const url=`https://www.omdbapi.com/?apikey=84b53699&i=${id}&plot=full`;
 
     useEffect(() => {
         const fetchDetails = async () => {
@@ -18,7 +18,7 @@ function Details() {
         };
 
         fetchDetails();
-    }, [id]);
+    }, [id, url]);
 
     if (!details) {
         return <p>Loading...</p>;
