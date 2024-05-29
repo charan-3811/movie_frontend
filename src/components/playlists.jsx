@@ -51,7 +51,7 @@ const Playlists = ({ user }) => {
     const handleMovies = async (playlist) => {
         setSelectedPlaylist(playlist.name);
         setStatus(playlist.status);
-        setShareUrl(`https://movie-frontend-eb76.onrender.com/${user}/${playlist.name}`);
+        setShareUrl(`https://movie-frontend-five.vercel.app/${user}/${playlist.name}`);
         try {
             const moviesDetails = await Promise.all(playlist.movies.map(fetchDetails));
             setMoviesDetails(moviesDetails);
