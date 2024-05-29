@@ -1,5 +1,3 @@
-// noinspection JSUnresolvedReference
-
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -39,6 +37,8 @@ const Playlists = ({ user }) => {
                 if (response.data === "added successfully") {
                     alert("Playlist added successfully");
                     fetchData();
+                } else {
+                    alert("Failed to add playlist: " + response.data);
                 }
             } catch (e) {
                 console.error("Failed to add playlist:", e);
@@ -53,8 +53,8 @@ const Playlists = ({ user }) => {
         setStatus(playlist.status);
         setShareUrl(`https://movie-frontend-five.vercel.app/${user}/${playlist.name}`);
         try {
-            const moviesDetails = await Promise.all(playlist.movies.map(fetchDetails));
-            setMoviesDetails(moviesDetails);
+            const moviesDetails = await Promise.all(playlist.movies.map((movie)=>fetchDetails(movie)));
+            setMoviesDetails(moviesDetails.filter(movie => movie !== null));
         } catch (error) {
             console.error("Error fetching movie details:", error);
         }
@@ -169,10 +169,10 @@ const Playlists = ({ user }) => {
                     <div style={{ display: "flex", alignItems: "center", marginBottom: "1rem" }}>
                         <h2 style={{ margin: "0" }}>{selectedPlaylist}</h2>
                         <Popup trigger={<button style={{ marginLeft: "1rem", padding: "0.5rem", color: "#fff", border: "none", cursor: "pointer", backgroundColor: "#333" }}>SHARE</button>} modal>
-              <span style={{ display: "flex", alignItems: "center" }}>
-                <Link style={{ marginRight: "1rem" }}>{shareUrl}</Link>
-                <button onClick={handleClipboard} style={{ padding: "0.5rem", backgroundColor: "#333", color: "#fff", border: "none", cursor: "pointer" }}>Copy</button>
-              </span>
+                            <span style={{ display: "flex", alignItems: "center" }}>
+                                <Link style={{ marginRight: "1rem" }}>{shareUrl}</Link>
+                                <button onClick={handleClipboard} style={{ padding: "0.5rem", backgroundColor: "#333", color: "#fff", border: "none", cursor: "pointer" }}>Copy</button>
+                            </span>
                         </Popup>
                         <button onClick={handleDeletePlaylist} style={{ marginLeft: "1rem", padding: "0.5rem", backgroundColor: "red", color: "#fff", border: "none", cursor: "pointer" }}>DELETE</button>
                         <select style={{ marginLeft: "1rem", height: "2.5rem", borderRadius: "4px", backgroundColor: "white", color: "black" }}
